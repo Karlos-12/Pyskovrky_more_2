@@ -11,6 +11,7 @@ namespace Pyskovrky_more_2
     {
         public List<fullfield> FieldList;
         public value round;
+        public fullfield[,] field;
 
         public Game(List<fullfield> fieldList, value round)
         {
@@ -46,6 +47,21 @@ namespace Pyskovrky_more_2
             {
                 MessageBox.Show("Tam teď ne!");
             }
+        }
+
+        public fullfield[,] fieldalize(fullfield centerfiled, int x, int y)
+        {
+            field = new fullfield[(y*2) +1, (x*2) +1];
+
+            foreach(fullfield temp in FieldList)
+            {
+                if(temp.x <= centerfiled.x + x && temp.x >= centerfiled.x - x && temp.y >= centerfiled.y-y && temp.y <= centerfiled.y + y)
+                {
+                    field[y + (temp.y - centerfiled.y), x + (temp.x - centerfiled.x)] = temp;
+                }
+            }
+
+            return field;
         }
 
         public void eval(fullfield temp)

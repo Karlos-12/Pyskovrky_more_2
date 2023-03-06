@@ -30,6 +30,8 @@ namespace Pyskovrky_more_2
                 test.add_field(new fullfield(5, i, value.Y));
             }
 
+            fullfield[,] field = test.fieldalize(test.FieldList[3], 3, 3);
+
         }
     }
 }
