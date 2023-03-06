@@ -134,5 +134,11 @@ namespace Pyskovrky_more_2
             MessageBox.Show("You have wined!");
         }
 
+        public SavedGame save()
+        {
+            SavedGame temp = new SavedGame(round, FieldList);
+            return temp;
+        }
+
     }
 }

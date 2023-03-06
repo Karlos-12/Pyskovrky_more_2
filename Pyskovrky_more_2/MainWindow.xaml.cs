@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,6 +28,9 @@ namespace Pyskovrky_more_2
         int cntx = 3;
         int cnty = 3;
 
+        int disx = 5;
+        int disy = 3;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -40,10 +46,9 @@ namespace Pyskovrky_more_2
 
         public void display()
         {
-            int x = 5;
-            int y = 3;
+            int x = disx;
+            int y = disy;
             fullfield cnt = new fullfield(cntx, cnty, value.X);
-            //tady ty parantery narvat do konstruktur a bude to dynamický
 
             fullfield[,] field = game.fieldalize(cnt, x, y);
             _out.Text = "";
@@ -94,6 +99,12 @@ namespace Pyskovrky_more_2
         {
             cnty--;
             display();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            string output = Newtonsoft.Json.JsonConvert.SerializeObject(game.save());
+            File.WriteAllText("resources\\Save.txt", output);
         }
     }
 }
