@@ -23,6 +23,9 @@ namespace Pyskovrky_more_2
         public MainWindow()
         {
             InitializeComponent();
+            Game test = new Game(null, value.X);
+            test.add_field(new fullfield(5, 5, value.X));
+            test.add_field(new fullfield(5, 4, value.X));
         }
     }
 }

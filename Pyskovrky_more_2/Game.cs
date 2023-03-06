@@ -36,10 +36,11 @@ namespace Pyskovrky_more_2
 
         public void add_field(fullfield temp)
         {
-            if (temp.val == round && FieldList.Exists(x => (x.y == temp.y) && (x.x == temp.x)))
+            if ((temp.val == round) && !(FieldList.Exists(x => (x.y == temp.y) && (x.x == temp.x))))
             {
                 FieldList.Add(temp);
                 eval(temp);
+                if(round == value.X) { round = value.Y; } else { round = value.Y; }
             }
             else
             {
