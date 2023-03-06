@@ -107,7 +107,7 @@ namespace Pyskovrky_more_2
 
         public void win(value winner)
         {
-
+            MessageBox.Show("You have wined!");
         }
 
     }
