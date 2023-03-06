@@ -1,0 +1,22 @@
+﻿<Window x:Class="Pyskovrky_more_2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Pyskovrky_more_2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="900" Width="1600">
+    <Grid Background="#FF1A1A1A">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="0,0,0,2" Background="#FF2E2E2E"/>
+        <Grid x:Name="display" Margin="100,100,100,100" Grid.Row="1" Background="#FF4D4D4D"/>
+        <Button Content="&lt;" HorizontalAlignment="Left" Margin="10,100,0,100" Grid.Row="1" Width="82" BorderBrush="{x:Null}" Foreground="White" Background="#FF383838" FontSize="64" FontWeight="Bold"/>
+        <Button Content="&gt;" HorizontalAlignment="Right" Margin="0,100,10,100" Grid.Row="1" Width="82" BorderBrush="{x:Null}" Foreground="White" Background="#FF383838" FontSize="64" FontWeight="Bold"/>
+        <Button Content="hore" Margin="100,10,100,0" Grid.Row="1" BorderBrush="{x:Null}" Foreground="White" Background="#FF383838" FontSize="64" FontWeight="Bold" Height="85" VerticalAlignment="Top"/>
+        <Button Content="dole" Margin="100,0,100,10" Grid.Row="1" BorderBrush="{x:Null}" Foreground="White" Background="#FF383838" FontSize="64" FontWeight="Bold" Height="85" VerticalAlignment="Bottom"/>
+
+    </Grid>
+</Window>
