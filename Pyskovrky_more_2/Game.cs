@@ -40,11 +40,17 @@ namespace Pyskovrky_more_2
             if (temp.val == round && FieldList.Exists(x => (x.y == temp.y) && (x.x == temp.x)))
             {
                 FieldList.Add(temp);
+                eval(temp);
             }
             else
             {
                 MessageBox.Show("Tam teď ne!");
             }
+        }
+
+        public void eval(fullfield temp)
+        {
+
         }
     }
 }
