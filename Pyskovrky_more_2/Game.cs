@@ -32,7 +32,6 @@ namespace Pyskovrky_more_2
                 this.round = round;
             }
 
-
         }
 
         public void add_field(fullfield temp)
@@ -55,8 +54,8 @@ namespace Pyskovrky_more_2
             {
                 if(n.x > temp.x -4 && n.x < temp.x +4 && n.y > temp.y -4 && n.y < temp.y +4)
                 {
-                    int vxn = n.x - temp.x;
-                    int vyn = n.y - temp.y;
+                    int vxn = (n.x - temp.x) +4;
+                    int vyn = (n.y - temp.y) +4;
                     area[vyn, vxn] = n;
                 }
             }
@@ -78,8 +77,8 @@ namespace Pyskovrky_more_2
                         case 7: way = new int[] { -1, -1 }; break;
                     }
 
-                    int chx = 0;
-                    int chy = 0;
+                    int chx = 4;
+                    int chy = 4;
                     int checek_now = 0;
 
                     for(int j = 4; j > 0; j--)
