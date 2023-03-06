@@ -78,9 +78,27 @@ namespace Pyskovrky_more_2
                         case 7: way = new int[] { -1, -1 }; break;
                     }
 
+                    int chx = 0;
+                    int chy = 0;
+                    int checek_now = 0;
+
                     for(int j = 4; j > 0; j--)
                     {
+                        chx += way[0];
+                        chy += way[1];
 
+                        if (area[chy, chx].val == temp.val)
+                        {
+                            checek_now++;
+                            if(checek_now == 4)
+                            {
+                                win(temp.val);
+                            }
+                        }
+                        else
+                        {
+                            j = 0;
+                        }
                     }
 
                 }
