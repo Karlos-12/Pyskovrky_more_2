@@ -24,8 +24,12 @@ namespace Pyskovrky_more_2
         {
             InitializeComponent();
             Game test = new Game(null, value.X);
-            test.add_field(new fullfield(5, 5, value.X));
-            test.add_field(new fullfield(5, 4, value.X));
+            for(int i = 1; i < 6; i++)
+            {
+                test.add_field(new fullfield(2, i, value.X));
+                test.add_field(new fullfield(5, i, value.Y));
+            }
+
         }
     }
 }

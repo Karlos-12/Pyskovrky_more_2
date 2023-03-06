@@ -40,7 +40,7 @@ namespace Pyskovrky_more_2
             {
                 FieldList.Add(temp);
                 eval(temp);
-                if(round == value.X) { round = value.Y; } else { round = value.Y; }
+                if(round == value.X) { round = value.Y; } else { round = value.X; }
             }
             else
             {
@@ -53,7 +53,7 @@ namespace Pyskovrky_more_2
             fullfield[,] area = new fullfield[9, 9];
             foreach(fullfield n in FieldList)
             {
-                if(n.x > temp.x -4 && n.x < temp.x +4 && n.y > temp.y -4 && n.y < temp.y +4)
+                if(n.x > temp.x -5 && n.x < temp.x +5 && n.y > temp.y -5 && n.y < temp.y +5)
                 {
                     int vxn = (n.x - temp.x) +4;
                     int vyn = (n.y - temp.y) +4;
@@ -82,17 +82,25 @@ namespace Pyskovrky_more_2
                     int chy = 4;
                     int checek_now = 0;
 
-                    for(int j = 4; j > 0; j--)
+                    for(int j = 5; j > 0; j--)
                     {
                         chx += way[0];
                         chy += way[1];
 
-                        if (area[chy, chx].val == temp.val)
+                        if (area[chy, chx] != null)
                         {
-                            checek_now++;
-                            if(checek_now == 4)
+                            if (area[chy, chx].val == temp.val)
                             {
-                                win(temp.val);
+                                checek_now++;
+                                if (checek_now == 4)
+                                {
+                                    win(temp.val);
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                j = 0;
                             }
                         }
                         else
