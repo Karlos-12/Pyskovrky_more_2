@@ -34,12 +34,8 @@ namespace Pyskovrky_more_2
         public MainWindow()
         {
             InitializeComponent();
-            game = new Game(null, value.X);
-            for(int i = 1; i < 6; i++)
-            {
-                game.add_field(new fullfield(2, i, value.X));
-                game.add_field(new fullfield(5, i, value.Y));
-            }
+
+            game = Load();
 
             display();
         }
@@ -50,27 +46,62 @@ namespace Pyskovrky_more_2
             int y = disy;
             fullfield cnt = new fullfield(cntx, cnty, value.X);
 
+            displaybox.RowDefinitions.Clear();
+            displaybox.ColumnDefinitions.Clear();
+
+            for(int k = (y*2); k >= 0; k--)
+            {
+                displaybox.RowDefinitions.Add(new RowDefinition());
+            }
+            for(int l = (x*2); l >= 0; l--)
+            {
+                displaybox.ColumnDefinitions.Add(new ColumnDefinition());
+            }
+
             fullfield[,] field = game.fieldalize(cnt, x, y);
-            _out.Text = "";
             for(int i = (y*2); i >= 0; i--)
             {
                 for(int j = (x*2); j >= 0; j--)
                 {
                     if (field[i, j] == null)
                     {
-                        _out.Text += " _ ";
-                        if (j == 0)
+                        //gen empty field element
+                        Button empty = new Button()
                         {
-                            _out.Text += "\n";
-                        }
+                            Margin = new Thickness(0,0,0,0),
+                            Background = new SolidColorBrush(Colors.LightGray),
+                            Tag = new int[] {i, j}
+                        };
+
+                        empty.Click += place;
+
+                        Grid.SetRow(empty, i);
+                        Grid.SetColumn(empty, j);
+                        displaybox.Children.Add(empty);
                     }
                     else
                     {
-                        _out.Text += " " + field[i, j].val.ToString() + " ";
-                        if (j == 0)
+                        //gen full field element
+                        Button full = new Button()
                         {
-                            _out.Text += "\n";
+                            Margin = new Thickness(0, 0, 0, 0),
+                            Tag = field[i, j]
+                        };
+
+                        if (field[i, j].val == value.X)
+                        {
+                            full.Background = new SolidColorBrush(Colors.Red);
+                            full.Content = "X";
                         }
+                        else
+                        {
+                            full.Background = new SolidColorBrush(Colors.Blue);
+                            full.Content = "O";
+                        }
+
+                        Grid.SetRow(full, i);
+                        Grid.SetColumn(full, j);
+                        displaybox.Children.Add(full);
                     }
                 }
             }
@@ -79,25 +110,25 @@ namespace Pyskovrky_more_2
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            cntx++;
+            cntx--;
             display();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            cntx--;
+            cntx++;
             display();
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            cnty++;
+            cnty--;
             display();
         }
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            cnty--;
+            cnty++;
             display();
         }
 
@@ -106,5 +137,35 @@ namespace Pyskovrky_more_2
             string output = Newtonsoft.Json.JsonConvert.SerializeObject(game.save());
             File.WriteAllText("resources\\Save.txt", output);
         }
+
+        private Game Load()
+        {
+            string input = File.ReadAllText("resources\\Save.txt");
+            if (input == "" || input == null)
+            {
+                return new Game(null, value.X);
+            }
+            else
+            {
+                SavedGame temp = JsonConvert.DeserializeObject<SavedGame>(input);
+                return new Game(temp.field_list, temp.turn);
+            }
+        }
+
+        private void place(object sender, RoutedEventArgs e)
+        {
+            Button send = sender as Button;
+            int[] pcords = send.Tag as int[];
+
+            int py = pcords[0];
+            int px = pcords[1];
+
+            int ry = cnty - disy + py;
+            int rx = cntx - disx + px;
+
+            game.add_field(new fullfield(rx, ry, game.round));
+            display();
+        }
+
     }
 }

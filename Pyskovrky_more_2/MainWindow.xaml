@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
         <Grid Margin="0,0,0,2" Background="#FF2E2E2E"/>
         <Grid x:Name="tedt" Margin="100,100,100,100" Grid.Row="1" Background="#FF4D4D4D">
-            <TextBox x:Name="_out" Text="" FontFamily="Consolas" FontSize="52" FontWeight="Bold" IsReadOnly="True" TextAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" SelectionBrush="{x:Null}" BorderBrush="{x:Null}" SelectionTextBrush="{x:Null}" Background="#FF4D4D4D" Foreground="White"/>
+            <Grid x:Name="displaybox"/>
         </Grid>
         <Button Content="&lt;" HorizontalAlignment="Left" Margin="10,100,0,100" Grid.Row="1" Width="82" BorderBrush="{x:Null}" Foreground="White" Background="#FF383838" FontSize="64" FontWeight="Bold" Click="Button_Click"/>
         <Button Content="&gt;" HorizontalAlignment="Right" Margin="0,100,10,100" Grid.Row="1" Width="82" BorderBrush="{x:Null}" Foreground="White" Background="#FF383838" FontSize="64" FontWeight="Bold" Click="Button_Click_1"/>
