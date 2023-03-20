@@ -143,12 +143,12 @@ namespace Pyskovrky_more_2
             string input = File.ReadAllText("resources\\Save.txt");
             if (input == "" || input == null)
             {
-                return new Game(null, value.X);
+                return new Game(null, value.X, this);
             }
             else
             {
                 SavedGame temp = JsonConvert.DeserializeObject<SavedGame>(input);
-                return new Game(temp.field_list, temp.turn);
+                return new Game(temp.field_list, temp.turn, this);
             }
         }
 

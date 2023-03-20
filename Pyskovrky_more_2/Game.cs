@@ -12,8 +12,9 @@ namespace Pyskovrky_more_2
         public List<fullfield> FieldList;
         public value round;
         public fullfield[,] field;
+        public MainWindow main;
 
-        public Game(List<fullfield> fieldList, value round)
+        public Game(List<fullfield> fieldList, value round, MainWindow main)
         {
             if (fieldList == null)
             {
@@ -32,7 +33,7 @@ namespace Pyskovrky_more_2
             {
                 this.round = round;
             }
-
+            this.main = main;
         }
 
         public void add_field(fullfield temp)
@@ -132,6 +133,12 @@ namespace Pyskovrky_more_2
         public void win(value winner)
         {
             MessageBox.Show("You have wined!");
+            FieldList.Clear();
+            round = value.X;
+            save();
+            MainWindow main = new MainWindow();
+            main.Show();
+            this.main.Close();
         }
 
         public SavedGame save()
